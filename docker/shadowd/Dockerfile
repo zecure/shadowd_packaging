@@ -8,10 +8,10 @@ MAINTAINER Hendrik Buchwald
 RUN apt-get update
 
 # Install shadowd
-RUN apt-get -y install software-properties-common
-RUN add-apt-repository -y ppa:zit-hb/shadowd
-RUN apt-get update
-RUN apt-get -y install shadowd
+RUN apt-get -y install software-properties-common &&\
+    add-apt-repository -y ppa:zit-hb/shadowd &&\
+    apt-get update &&\
+    apt-get -y install shadowd
 
 # Copy a configuration file from the current directory
 ADD shadowd.ini /etc/shadowd/
