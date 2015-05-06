@@ -21,4 +21,4 @@ EXPOSE 9115
 
 # Set the default command to run when starting the container
 CMD ["/usr/bin/shadowd", "-c", "/etc/shadowd/shadowd.ini", \
-	 "-U", "shadowd", "-G", "shadowd"]
+     "-U", "shadowd", "-G", "shadowd"]
