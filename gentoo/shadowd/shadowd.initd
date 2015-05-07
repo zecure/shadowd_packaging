@@ -1,0 +1,39 @@
+#!/sbin/runscript
+# Copyright 1999-2015 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: $
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	if [ ! -f "${SHADOWD_CONF}" ] ; then
+		ewarn "${SHADOWD_CONF} does not exist."
+		return 1
+	fi
+
+	if [ -z "${SHADOWD_PID}" ] ; then
+		ewarn "pid variable in ${SHADOWD_CONF}"
+		ewarn "is not set. Falling back to shadowd.pid"
+		SHADOWD_PID="/run/shadowd.pid"
+	fi
+}
+
+start() {
+	checkconfig || return 1
+	checkpath -f -q -m 0640 -o root:shadowd "${SHADOWD_CONF}"
+
+	ebegin "Starting shadowd"
+	start-stop-daemon --start --quiet --exec /usr/bin/shadowd \
+		--pidfile "${SHADOWD_PID}" -- -c "${SHADOWD_CONF}" \
+		-D -P "${SHADOWD_PID}" -U shadowd -G shadowd
+	eend $?
+}
+
+stop() {
+	local rv=0
+	ebegin "Stopping shadowd"
+	start-stop-daemon --stop --quiet --pidfile "${SHADOWD_PID}"
+	eend $?
+}

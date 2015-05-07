@@ -1,0 +1,9 @@
+[Unit]
+Description=Shadow Daemon Web Application Firewall
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/shadowd -c /etc/shadowd/shadowd.ini -U shadowd -G shadowd
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,33 @@
+Source: shadowd
+Maintainer: Hendrik Buchwald <hb@zecure.org>
+Section: net
+Priority: optional
+Standards-Version: 3.9.6
+Build-Depends: 
+    debhelper (>= 9),
+    libssl-dev,
+    libboost-system-dev,
+    libboost-thread-dev,
+    libboost-program-options-dev,
+    libboost-regex-dev,
+    libasio-dev,
+    libjsoncpp-dev,
+    libcrypto++-dev,
+    libdbi-dev,
+    cmake
+Homepage: https://shadowd.zecure.org/
+
+Package: shadowd
+Architecture: any
+Pre-Depends: adduser (>= 3.11)
+Depends: 
+    libdbd-pgsql,
+    libdbd-mysql,
+    ${shlibs:Depends},
+    ${misc:Depends}
+Description: Shadow Daemon Web Application Firewall
+ Shadow Daemon is a collection of tools to detect, protocol and prevent attacks
+ on web applications. Technically speaking, Shadow Daemon is a web application
+ firewall that intercepts requests and filters out malicious parameters. It is
+ a modular system that separates web application, analysis and interface to
+ increase security, flexibility and expandability.

@@ -1,0 +1,7 @@
+# /etc/conf.d/shadowd
+
+# Location of the shadowd configuration file
+SHADOWD_CONF="/etc/shadowd/shadowd.ini"
+
+# Location of the shadowd pid file
+SHADOWD_PID="$(/usr/bin/awk -F= '/^pid/{print $2}' ${SHADOWD_CONF})"
