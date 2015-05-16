@@ -1,5 +1,5 @@
 Name:             shadowd
-Version:          1.1.2
+Version:          1.1.3
 Release:          1%{?dist}
 Summary:          Shadow Daemon web application firewall server
 Group:            Applications/Internet
@@ -72,6 +72,9 @@ install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/shadowd.service
 
 
 %changelog
+* Sat May 16 2015 Hendrik Buchwald <hb@zecure.org> - 1.1.3-1
+- Bug fix in the storage queue and flood protection
+
 * Sat May 02 2015 Hendrik Buchwald <hb@zecure.org> - 1.1.2-1
 - Uncritical patches to improve performance and reliability
 
