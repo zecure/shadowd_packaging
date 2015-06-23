@@ -33,5 +33,9 @@ RUN curl -s https://getcomposer.org/installer | php &&\
 # Port to expose
 EXPOSE 80
 
+# Install start script.
+ADD start_server.sh /usr/sbin/
+RUN chmod 755 /usr/sbin/start_server.sh
+
 # Set the default command to run when starting the container
-CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
+CMD ["/usr/sbin/start_server.sh"]
