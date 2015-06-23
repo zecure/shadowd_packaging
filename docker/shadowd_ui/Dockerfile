@@ -33,7 +33,7 @@ RUN curl -s https://getcomposer.org/installer | php &&\
 # Port to expose
 EXPOSE 80
 
-# Install start script.
+# Install start script
 ADD start_server.sh /usr/sbin/
 RUN chmod 755 /usr/sbin/start_server.sh
 
