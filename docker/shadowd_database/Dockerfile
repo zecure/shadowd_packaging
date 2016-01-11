@@ -16,7 +16,8 @@ USER postgres
 # Add a user and database
 RUN service postgresql start &&\
     createuser shadowd &&\
-    createdb -O shadowd shadowd
+    createdb -O shadowd shadowd &&\
+    service postgresql stop
 
 # Allow remote connections
 RUN echo "host all all 0.0.0.0/0 trust" > /etc/postgresql/9.3/main/pg_hba.conf &&\
@@ -25,10 +26,10 @@ RUN echo "host all all 0.0.0.0/0 trust" > /etc/postgresql/9.3/main/pg_hba.conf &
 # Create database layout
 WORKDIR /tmp
 RUN git clone https://github.com/zecure/shadowd.git
-RUN service postgresql restart &&\
+RUN service postgresql start &&\
     psql -h127.0.0.1 -Ushadowd -w shadowd < shadowd/misc/databases/pgsql_layout.sql &&\
     psql -h127.0.0.1 -Ushadowd -w shadowd --command "INSERT INTO users (username, password, role, change_password) VALUES ('admin', '\$2y\$10\$YR0Q2pc5LZT0v9UXP5PXAOQX00v3WFEH9PAdHkMU47oeI0DvstvCe', 1, true);" &&\
-    psql -h127.0.0.1 -Ushadowd -w shadowd --command "INSERT INTO settings (page_limit, sort_order, theme, open_filter, user_id) VALUES (50, 0, 0, false, 1);"
+    psql -h127.0.0.1 -Ushadowd -w shadowd --command "INSERT INTO settings (page_limit, sort_order, theme, open_filter, user_id, locale) VALUES (50, 0, 'united', false, 1, 'en');"
 
 # Expose the PostgreSQL port
 EXPOSE 5432
