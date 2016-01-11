@@ -1,5 +1,5 @@
 Name:             shadowd
-Version:          1.1.3
+Version:          2.0.0
 Release:          1%{?dist}
 Summary:          Shadow Daemon web application firewall server
 Group:            Applications/Internet
@@ -17,7 +17,7 @@ Requires(preun):  systemd
 Requires(postun): systemd
 
 %description
-Shadow Daemon is a collection of tools to detect, protocol and prevent attacks
+Shadow Daemon is a collection of tools to detect, record and prevent attacks
 on web applications. Technically speaking, Shadow Daemon is a web application
 firewall that intercepts requests and filters out malicious parameters. It is a
 modular system that separates web application, analysis and interface to
@@ -68,10 +68,15 @@ install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/shadowd.service
 %{_datarootdir}/shadowd/pgsql_layout.sql
 %{_datarootdir}/shadowd/mysql_layout_1.0.0-1.1.0.sql
 %{_datarootdir}/shadowd/pgsql_layout_1.0.0-1.1.0.sql
+%{_datarootdir}/shadowd/mysql_layout_1.1.3-2.0.0.sql
+%{_datarootdir}/shadowd/pgsql_layout_1.1.3-2.0.0.sql
 %doc %{_mandir}/man1/shadowd.1.gz
 
 
 %changelog
+* Mon Jan 11 2016 Hendrik Buchwald <hb@zecure.org> - 2.0.0-1
+- New major version
+
 * Sat May 16 2015 Hendrik Buchwald <hb@zecure.org> - 1.1.3-1
 - Bug fix in the storage queue and flood protection
 
