@@ -68,8 +68,6 @@ install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/shadowd.service
 %{_datarootdir}/shadowd/pgsql_layout.sql
 %{_datarootdir}/shadowd/mysql_layout_1.0.0-1.1.0.sql
 %{_datarootdir}/shadowd/pgsql_layout_1.0.0-1.1.0.sql
-%{_datarootdir}/shadowd/mysql_layout_1.1.3-2.0.0.sql
-%{_datarootdir}/shadowd/pgsql_layout_1.1.3-2.0.0.sql
 %doc %{_mandir}/man1/shadowd.1.gz
 
 
