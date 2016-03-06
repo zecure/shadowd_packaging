@@ -12,7 +12,6 @@ Build-Depends:
     libboost-program-options-dev,
     libboost-regex-dev,
     libasio-dev,
-    libjsoncpp-dev,
     libcrypto++-dev,
     libdbi-dev,
     cmake

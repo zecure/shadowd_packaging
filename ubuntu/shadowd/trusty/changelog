@@ -1,3 +1,9 @@
+shadowd (2.0.1-1+trusty) trusty; urgency=high
+
+  This update fixes a critical bug that is caused by null-bytes.
+
+ -- Hendrik Buchwald <hb@zecure.org>  Sun, 06 Mar 2016 11:37:00 +0100
+
 shadowd (2.0.0-1+trusty) trusty; urgency=medium
 
   New major version.

@@ -1,5 +1,5 @@
 Name:             shadowd
-Version:          2.0.0
+Version:          2.0.1
 Release:          1%{?dist}
 Summary:          Shadow Daemon web application firewall server
 Group:            Applications/Internet
@@ -9,7 +9,7 @@ URL:              https://shadowd.zecure.org/
 Source0:          https://shadowd.zecure.org/files/shadowd-%{version}.tar.gz
 Source1:          shadowd.service
 
-BuildRequires:    systemd, cmake, openssl-devel, boost-devel, libdbi-devel, cryptopp-devel, jsoncpp-devel
+BuildRequires:    systemd, cmake, openssl-devel, boost-devel, libdbi-devel, cryptopp-devel
 Requires:         libdbi-dbd-mysql, libdbi-dbd-pgsql
 Requires(pre):    /usr/sbin/useradd
 Requires(post):   systemd
@@ -68,10 +68,15 @@ install -D -p -m 0644 %{SOURCE1} %{buildroot}%{_unitdir}/shadowd.service
 %{_datarootdir}/shadowd/pgsql_layout.sql
 %{_datarootdir}/shadowd/mysql_layout_1.0.0-1.1.0.sql
 %{_datarootdir}/shadowd/pgsql_layout_1.0.0-1.1.0.sql
+%{_datarootdir}/shadowd/mysql_layout_1.1.3-2.0.0.sql
+%{_datarootdir}/shadowd/pgsql_layout_1.1.3-2.0.0.sql
 %doc %{_mandir}/man1/shadowd.1.gz
 
 
 %changelog
+* Sun Mar 06 2016 Hendrik Buchwald <hb@zecure.org> - 2.0.1-1
+- Bug fix for null-bytes
+
 * Mon Jan 11 2016 Hendrik Buchwald <hb@zecure.org> - 2.0.0-1
 - New major version
 
