@@ -1,6 +1,6 @@
 ## Usage
 
-Install Docker and Docker-Compose and execute `shadowdctl.sh`, a Docker-Compose wrapper.
+Install Docker and Docker-Compose and execute `shadowdctl`, a Docker-Compose wrapper.
 
     sudo ./shadowdctl up -d
 
