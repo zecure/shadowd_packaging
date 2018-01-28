@@ -1,13 +1,13 @@
 parameters:
-    database_driver:   pdo_pgsql
-    database_host:     db
-    database_port:     ~
-    database_name:     shadowd
-    database_user:     shadowd
-    database_password: ~
+    database_driver:   PLACEHOLDER_DB_DRIVER
+    database_host:     PLACEHOLDER_DB_HOST
+    database_port:     PLACEHOLDER_DB_PORT
+    database_name:     PLACEHOLDER_DB_NAME
+    database_user:     PLACEHOLDER_DB_USER
+    database_password: PLACEHOLDER_DB_PASSWORD
 
     locale:            en
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            PLACEHOLDER_SECRET_TOKEN
 
     debug_toolbar:          true
     debug_redirects:        false
