@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+if [ -z "$SHADOWD_DB_PASSWORD" ]; then
+    echo "Required env SHADOWD_DB_PASSWORD is missing"
+    exit 1
+fi
+
 SHADOWD_UI_CONFIG="/var/shadowd_ui/app/config/parameters.yml"
 
 if [ -z "$SHADOWD_DB_DRIVER" ]; then

@@ -1,6 +1,11 @@
 #!/bin/bash
 set -e
 
+if [ -z "$SHADOWD_DB_PASSWORD" ]; then
+    echo "Required env SHADOWD_DB_PASSWORD is missing"
+    exit 1
+fi
+
 SHADOWD_CONFIG="/etc/shadowd/shadowd.ini"
 
 cat /dev/null > $SHADOWD_CONFIG
