@@ -17,6 +17,8 @@ services:
       - db
     depends_on:
       - db
+    environment:
+      - "SHADOWD_DB_HOST=db"
     env_file:
       - "${SHADOWD_ENV_DB_LOCATION}"
 
