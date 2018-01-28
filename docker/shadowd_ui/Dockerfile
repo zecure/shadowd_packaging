@@ -50,3 +50,5 @@ CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
 # Set custom entrypoint
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+ENV SHADOWD_DB_HOST db

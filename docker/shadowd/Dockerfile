@@ -31,4 +31,4 @@ COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ENV SHADOWD_ADDRESS 0.0.0.0
-
+ENV SHADOWD_DB_HOST db
