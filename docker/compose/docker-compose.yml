@@ -4,7 +4,7 @@ services:
     image: zecure/shadowd_database
     restart: always
     volumes:
-        - "/var/lib/shadowd/db:/var/lib/postgresql/data"
+        - "${SHADOWD_DB_LOCATION}:/var/lib/postgresql/data"
     environment:
         POSTGRES_PASSWORD: ${SHADOWD_DB_PASSWORD}
 
