@@ -1,20 +1,23 @@
 # Set the base image to Ubuntu
-FROM ubuntu
+FROM ubuntu:xenial
 
 # Set the file maintainer
 MAINTAINER Hendrik Buchwald
 
-# Update the system
-RUN apt-get update
+# Copy shadowd package from the current directory
+COPY shadowd_*.deb /tmp/
 
 # Install shadowd
-RUN apt-get -y install software-properties-common &&\
-    add-apt-repository -y ppa:zit-hb/shadowd &&\
-    apt-get update &&\
-    apt-get -y install shadowd
+RUN apt-get update && \
+    apt-get -y install libdbd-pgsql libdbd-mysql libboost-program-options1.58.0 libboost-regex1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libcrypto++9v5 libdbi1 libssl1.0.0 && \
+    dpkg -i /tmp/shadowd_*.deb && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/shadowd_*.deb
 
 # Copy a configuration file from the current directory
-ADD shadowd.ini /etc/shadowd/
+COPY shadowd.ini /etc/shadowd/
+RUN chown root:root /etc/shadowd/shadowd.ini && \
+    chmod 640 /etc/shadowd/shadowd.ini
 
 # Port to expose
 EXPOSE 9115
