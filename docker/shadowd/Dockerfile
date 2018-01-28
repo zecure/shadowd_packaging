@@ -15,8 +15,7 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/* /tmp/shadowd_*.deb
 
 # Copy a configuration file from the current directory
-COPY shadowd.ini /etc/shadowd/
-RUN chown root:root /etc/shadowd/shadowd.ini && \
+RUN chown root:shadowd /etc/shadowd/shadowd.ini && \
     chmod 640 /etc/shadowd/shadowd.ini
 
 # Port to expose
@@ -31,4 +30,3 @@ COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
 ENV SHADOWD_ADDRESS 0.0.0.0
-ENV SHADOWD_DB_HOST db
