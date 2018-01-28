@@ -1,6 +1,6 @@
 ### Requirements
 
-Install [Docker CE](https://docs.docker.com/install/), and [docker-compose](https://docs.docker.com/compose/install/).
+Install [Docker CE](https://docs.docker.com/install/), and [Docker Compose](https://docs.docker.com/compose/install/).
 
 ### Setup
 
@@ -15,7 +15,7 @@ Wait until the shadowd_ui container is started (15-30 seconds) and add a user ac
 You need this user account to log in to the web interface.
 The e-mail address is optional.
 
-For more information about other commands check out the [docker-compose manual](https://docs.docker.com/compose/).
+For more information about other commands check out the [Docker Compose manual](https://docs.docker.com/compose/).
 
 ### Configuration
 
