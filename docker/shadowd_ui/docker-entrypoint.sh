@@ -30,6 +30,7 @@ sed -i "s/PLACEHOLDER_DB_USER/$SHADOWD_DB_USER/g" "$SHADOWD_UI_CONFIG"
 sed -i "s/PLACEHOLDER_DB_PASSWORD/$SHADOWD_DB_PASSWORD/g" "$SHADOWD_UI_CONFIG"
 sed -i "s/PLACEHOLDER_SECRET_TOKEN/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | head -c 32)/g" "$SHADOWD_UI_CONFIG"
 
+sleep 15
 su -s /bin/sh -c 'php app/console cache:warmup --quiet' www-data
 php app/console assets:install web --symlink --quiet
 

@@ -29,3 +29,6 @@ CMD ["/usr/bin/shadowd", "-c", "/etc/shadowd/shadowd.ini", \
 # Set custom entrypoint
 COPY ./docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+ENV SHADOWD_ADDRESS 0.0.0.0
+

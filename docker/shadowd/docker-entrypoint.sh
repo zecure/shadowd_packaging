@@ -3,6 +3,12 @@ set -e
 
 SHADOWD_CONFIG="/etc/shadowd/shadowd.ini"
 
+cat /dev/null > $SHADOWD_CONFIG
+
+if [ -n "$SHADOWD_ADDRESS" ]; then
+    echo "address=$SHADOWD_ADDRESS" >> $SHADOWD_CONFIG
+fi
+
 if [ -n "$SHADOWD_THREADS" ]; then
     echo "threads=$SHADOWD_THREADS" >> $SHADOWD_CONFIG
 fi
@@ -31,5 +37,7 @@ if [ -n "$SHADOWD_DB_PASSWORD" ]; then
     echo "db-password=$SHADOWD_DB_PASSWORD" >> $SHADOWD_CONFIG
 fi
 
+sleep 15
+echo "Starting command $@"
 exec "$@"
 

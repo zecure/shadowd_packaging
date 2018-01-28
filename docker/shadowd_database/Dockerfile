@@ -9,6 +9,7 @@ RUN apt-get update  && \
 WORKDIR /tmp
 RUN \
     git clone https://github.com/zecure/shadowd.git && \
-    cp shadowd/misc/databases/pgsql_layout.sql /docker-entrypoint-initdb.d
+    cp shadowd/misc/databases/pgsql_layout.sql /docker-entrypoint-initdb.d && \
+    rm -rf /tmp/shadowd
 
 ENV POSTGRES_USER shadowd
