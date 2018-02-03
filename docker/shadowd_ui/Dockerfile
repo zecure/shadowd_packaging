@@ -23,10 +23,7 @@ ADD lighttpd.conf /etc/lighttpd/
 
 # Install shadowd_ui
 WORKDIR /var
-RUN \
-    git clone https://github.com/zecure/shadowd_ui.git && \
-    cd shadowd_ui && \
-    git checkout dev
+RUN git clone https://github.com/zecure/shadowd_ui.git
 WORKDIR /var/shadowd_ui
 ADD parameters.yml.dist app/config/parameters.yml
 
