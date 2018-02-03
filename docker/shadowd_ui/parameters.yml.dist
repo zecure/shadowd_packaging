@@ -5,6 +5,7 @@ parameters:
     database_name:     PLACEHOLDER_DB_NAME
     database_user:     PLACEHOLDER_DB_USER
     database_password: PLACEHOLDER_DB_PASSWORD
+    demo:              PLACEHOLDER_DEMO
 
     locale:            en
     secret:            PLACEHOLDER_SECRET_TOKEN
