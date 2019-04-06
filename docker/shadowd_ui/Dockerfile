@@ -4,9 +4,15 @@ FROM ubuntu:xenial
 # Set the file maintainer
 MAINTAINER Hendrik Buchwald
 
+# Environment
+ENV SYMFONY_ENV prod
+
+# Port to expose
+EXPOSE 80
+
 # Install dependencies
 RUN apt-get update  && \
-    apt-get -y install git curl lighttpd php-cgi php-cli php-pgsql php-mysql php-dom php-zip && \
+    apt-get -y install git curl lighttpd php-cgi php-cli php-pgsql php-mysql php-dom php-zip composer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -19,31 +25,18 @@ RUN mkdir /var/run/lighttpd/ &&\
     chown www-data:www-data /var/run/lighttpd/
 
 # Copy a configuration file from the current directory
-ADD lighttpd.conf /etc/lighttpd/
-
-# Install shadowd_ui
-WORKDIR /var
-RUN git clone https://github.com/zecure/shadowd_ui.git
-WORKDIR /var/shadowd_ui
-ADD parameters.yml.dist app/config/parameters.yml
-
-ENV SYMFONY_ENV prod
-
-RUN \
-    php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" && \
-    php -r "if (!hash_file('SHA384', 'composer-setup.php') === '93b54496392c062774670ac18b134c3b3a95e5a5e5c8f1a9f115f203b75bf9a129d5daa8ba6a13e2cc8a1da0806388a8') { unlink('composer-setup.php'); exit(1); }" && \
-    php composer-setup.php && \
-    php -r "unlink('composer-setup.php');" && \
-    php composer.phar -n install --no-dev --no-scripts && \
-    rm composer.phar && \
-    chown -R www-data:www-data app/cache app/logs
-
-# Port to expose
-EXPOSE 80
+ADD files/lighttpd.conf /etc/lighttpd/
 
 # Set the default command to run when starting the container
 CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
 
 # Set custom entrypoint
-COPY ./docker-entrypoint.sh /
+COPY files/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
+
+# Install shadowd_ui
+COPY source /var/shadowd_ui
+WORKDIR /var/shadowd_ui
+COPY files/parameters.yml.dist app/config/parameters.yml
+RUN composer -n install --no-dev --no-scripts && \
+    chown -R www-data:www-data app/cache app/logs
