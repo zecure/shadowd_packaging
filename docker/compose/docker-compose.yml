@@ -9,7 +9,7 @@ services:
       - "${SHADOWD_ENV_DB_LOCATION}"
 
   web:
-    image: zecure/shadowd_ui
+    image: zecure/shadowd_ui:2
     restart: always
     ports:
       - 8080:80
@@ -23,7 +23,7 @@ services:
       - "${SHADOWD_ENV_DB_LOCATION}"
 
   shadowd:
-    image: zecure/shadowd
+    image: zecure/shadowd:2
     restart: always
     ports:
       - 9115:9115
