@@ -1,5 +1,5 @@
 # Set the base image to Ubuntu
-FROM ubuntu:xenial
+FROM ubuntu:focal
 
 # Set the file maintainer
 MAINTAINER Hendrik Buchwald
@@ -9,7 +9,7 @@ COPY shadowd_*.deb /tmp/
 
 # Install shadowd
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install libdbd-pgsql libdbd-mysql libboost-program-options1.58.0 libboost-regex1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libcrypto++9v5 libdbi1 libssl1.0.0 && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install libdbd-pgsql libdbd-mysql libboost-program-options1.71.0 libboost-regex1.71.0 libboost-system1.71.0 libboost-thread1.71.0 libcrypto++6 libdbi1 libssl1.1 && \
     DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/shadowd_*.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/shadowd_*.deb
