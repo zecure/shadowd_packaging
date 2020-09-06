@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   db:
-    image: zecure/shadowd_database
+    image: zecure/shadowd_database:12.4
     restart: always
     volumes:
       - "${SHADOWD_DB_LOCATION}:/var/lib/postgresql/data"
