@@ -2,7 +2,7 @@ FROM postgres:9.6
 
 # Install dependencies
 RUN apt-get update  && \
-    apt-get -y install git && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install git && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 

@@ -9,8 +9,8 @@ COPY shadowd_*.deb /tmp/
 
 # Install shadowd
 RUN apt-get update && \
-    apt-get -y install libdbd-pgsql libdbd-mysql libboost-program-options1.58.0 libboost-regex1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libcrypto++9v5 libdbi1 libssl1.0.0 && \
-    dpkg -i /tmp/shadowd_*.deb && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install libdbd-pgsql libdbd-mysql libboost-program-options1.58.0 libboost-regex1.58.0 libboost-system1.58.0 libboost-thread1.58.0 libcrypto++9v5 libdbi1 libssl1.0.0 && \
+    DEBIAN_FRONTEND=noninteractive dpkg -i /tmp/shadowd_*.deb && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/shadowd_*.deb
 

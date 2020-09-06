@@ -12,7 +12,7 @@ EXPOSE 80
 
 # Install dependencies
 RUN apt-get update  && \
-    apt-get -y install git curl lighttpd php-cgi php-cli php-pgsql php-mysql php-dom php-zip composer && \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install git curl lighttpd php-cgi php-cli php-pgsql php-mysql php-dom php-zip composer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
