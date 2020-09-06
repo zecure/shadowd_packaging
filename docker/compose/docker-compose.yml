@@ -36,3 +36,6 @@ services:
     env_file:
       - "${SHADOWD_ENV_DB_LOCATION}"
 
+    # Example for more verbose logging. Uncomment to enable.
+    #command: ["/usr/bin/shadowd", "-c", "/etc/shadowd/shadowd.ini", "-U", "shadowd", "-G", "shadowd", "--verbose"]
+
