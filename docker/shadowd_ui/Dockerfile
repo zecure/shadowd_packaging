@@ -1,5 +1,5 @@
 # Set the base image to Ubuntu
-FROM ubuntu:18.04
+FROM ubuntu:focal
 
 # Set the file maintainer
 MAINTAINER Hendrik Buchwald
