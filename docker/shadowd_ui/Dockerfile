@@ -3,8 +3,7 @@ FROM ubuntu:focal AS builder
 WORKDIR /tmp
 RUN \
     apt-get update  && \
-    DEBIAN_FRONTEND=noninteractive apt-get -y install git php-cli php-pgsql php-mysql php-dom php-zip composer
-RUN \
+    DEBIAN_FRONTEND=noninteractive apt-get -y install git php-cli php-pgsql php-mysql php-dom php-zip composer && \
     git clone https://github.com/zecure/shadowd_ui.git
 WORKDIR /tmp/shadowd_ui
 COPY files/parameters.yml.dist app/config/parameters.yml
