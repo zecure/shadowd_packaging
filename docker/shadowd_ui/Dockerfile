@@ -1,12 +1,12 @@
 FROM ubuntu:focal AS builder
-WORKDIR /tmp
+WORKDIR /var
 RUN \
     apt-get update  && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install git php-cli php-pgsql php-mysql php-dom php-zip composer && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     git clone https://github.com/zecure/shadowd_ui.git
-WORKDIR /tmp/shadowd_ui
+WORKDIR shadowd_ui
 COPY files/parameters.yml.dist app/config/parameters.yml
 RUN \
     composer -n install --no-dev --no-scripts && \
@@ -29,6 +29,6 @@ ADD files/lighttpd.conf /etc/lighttpd/
 CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
 COPY files/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
-COPY --from=builder /tmp/shadowd_ui /var/shadowd_ui
+COPY --from=builder /var/shadowd_ui /var/shadowd_ui
 WORKDIR /var/shadowd_ui
 
