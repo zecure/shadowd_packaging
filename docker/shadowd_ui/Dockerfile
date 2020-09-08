@@ -3,6 +3,8 @@ WORKDIR /tmp
 RUN \
     apt-get update  && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install git php-cli php-pgsql php-mysql php-dom php-zip composer && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     git clone https://github.com/zecure/shadowd_ui.git
 WORKDIR /tmp/shadowd_ui
 COPY files/parameters.yml.dist app/config/parameters.yml
@@ -17,6 +19,8 @@ EXPOSE 80
 RUN \
     apt-get update  && \
     DEBIAN_FRONTEND=noninteractive apt-get -y install curl lighttpd php-cgi php-cli php-pgsql php-mysql php-dom php-zip && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
     ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && \
     ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && \
     mkdir /var/run/lighttpd/ &&\
