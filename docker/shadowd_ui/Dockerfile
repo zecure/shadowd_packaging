@@ -1,4 +1,3 @@
-# Build stage
 FROM ubuntu:focal AS builder
 WORKDIR /tmp
 RUN \
@@ -10,8 +9,6 @@ COPY files/parameters.yml.dist app/config/parameters.yml
 RUN \
     composer -n install --no-dev --no-scripts && \
     chown -R www-data:www-data app/cache app/logs
-
-###
 
 FROM ubuntu:focal
 MAINTAINER Hendrik Buchwald
