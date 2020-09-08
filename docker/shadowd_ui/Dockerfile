@@ -23,7 +23,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* && \
     ln -s /etc/lighttpd/conf-available/10-fastcgi.conf /etc/lighttpd/conf-enabled/ && \
     ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && \
-    mkdir /var/run/lighttpd/ &&\
+    mkdir /var/run/lighttpd/ && \
     chown www-data:www-data /var/run/lighttpd/
 ADD files/lighttpd.conf /etc/lighttpd/
 CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
