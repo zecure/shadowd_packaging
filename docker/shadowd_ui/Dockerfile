@@ -25,7 +25,7 @@ RUN \
     ln -s /etc/lighttpd/conf-available/15-fastcgi-php.conf /etc/lighttpd/conf-enabled/ && \
     mkdir /var/run/lighttpd/ && \
     chown www-data:www-data /var/run/lighttpd/
-ADD files/lighttpd.conf /etc/lighttpd/
+COPY files/lighttpd.conf /etc/lighttpd/
 CMD ["/usr/sbin/lighttpd", "-f", "/etc/lighttpd/lighttpd.conf", "-D"]
 COPY files/docker-entrypoint.sh /
 ENTRYPOINT ["/docker-entrypoint.sh"]
